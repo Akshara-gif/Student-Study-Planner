@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Makes the page look good on mobile screens -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Study Planner</title>
+  <!-- Link to our CSS file for styling -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header>
+    <h1>📚 Student Study Planner</h1>
+    <!-- Today's date will be inserted here by JavaScript -->
+    <p id="today-date"></p>
+  </header>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main>
+
+    <!-- ===== PROGRESS SECTION ===== -->
+    <section class="progress-section">
+      <h2>Your Progress</h2>
+      <div class="progress-info">
+        <span id="completed-count">0</span> of <span id="total-count">0</span> tasks completed
+      </div>
+      <!-- Visual progress bar -->
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+    </section>
+
+    <!-- ===== ADD TASK FORM ===== -->
+    <section class="form-section">
+      <h2>Add a New Task</h2>
+      <form id="task-form">
+
+        <!-- Task Name input -->
+        <div class="form-group">
+          <label for="task-name">Task Name</label>
+          <input type="text" id="task-name" placeholder="e.g. Read Chapter 5" required />
+        </div>
+
+        <!-- Subject input -->
+        <div class="form-group">
+          <label for="task-subject">Subject</label>
+          <input type="text" id="task-subject" placeholder="e.g. Mathematics" required />
+        </div>
+
+        <!-- Due Date input -->
+        <div class="form-group">
+          <label for="task-due">Due Date</label>
+          <input type="date" id="task-due" required />
+        </div>
+
+        <!-- Priority dropdown -->
+        <div class="form-group">
+          <label for="task-priority">Priority</label>
+          <select id="task-priority">
+            <option value="low">🟢 Low</option>
+            <option value="medium" selected>🟡 Medium</option>
+            <option value="high">🔴 High</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-add">Add Task</button>
+      </form>
+    </section>
+
+    <!-- ===== TASK LIST ===== -->
+    <section class="task-section">
+      <h2>My Tasks</h2>
+      <!-- Tasks will be added here dynamically by JavaScript -->
+      <ul id="task-list">
+        <!-- Empty state message shown when there are no tasks -->
+        <li class="empty-message" id="empty-message">No tasks yet. Add one above! 🎯</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>Stay focused. Keep learning. 🌟</p>
+  </footer>
+
+  <!-- Link to our JavaScript file -->
+  <script src="script.js"></script>
+</body>
+</html>

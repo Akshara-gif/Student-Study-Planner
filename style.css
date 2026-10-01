@@ -1,0 +1,283 @@
+/* =============================================
+   STUDENT STUDY PLANNER — STYLESHEET
+   ============================================= */
+
+/* --- Reset & Base Styles --- */
+/* Remove default browser spacing and use border-box sizing everywhere */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f4ff;
+  color: #1e1e2e;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- HEADER --- */
+header {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: white;
+  text-align: center;
+  padding: 28px 20px 20px;
+}
+
+header h1 {
+  font-size: 2rem;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+/* Today's date displayed below the title */
+#today-date {
+  font-size: 1rem;
+  opacity: 0.85;
+}
+
+/* --- MAIN LAYOUT --- */
+main {
+  max-width: 760px;
+  width: 100%;
+  margin: 30px auto;
+  padding: 0 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* --- SHARED CARD STYLE (used by all sections) --- */
+section {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 12px rgba(79, 70, 229, 0.08);
+}
+
+section h2 {
+  font-size: 1.15rem;
+  color: #4f46e5;
+  margin-bottom: 16px;
+  border-bottom: 2px solid #ede9fe;
+  padding-bottom: 8px;
+}
+
+/* --- PROGRESS SECTION --- */
+.progress-info {
+  font-size: 1rem;
+  margin-bottom: 12px;
+  color: #555;
+}
+
+.progress-info span {
+  font-weight: 700;
+  color: #4f46e5;
+  font-size: 1.1rem;
+}
+
+/* Grey track for the progress bar */
+.progress-bar-container {
+  background-color: #e5e7eb;
+  border-radius: 999px;
+  height: 12px;
+  overflow: hidden;
+}
+
+/* Coloured fill — width is set dynamically by JavaScript */
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #4f46e5, #7c3aed);
+  border-radius: 999px;
+  width: 0%;
+  transition: width 0.4s ease;
+}
+
+/* --- ADD TASK FORM --- */
+/* Form group wraps each label + input pair */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 14px;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 5px;
+}
+
+/* Shared styles for text inputs, date picker, and dropdown */
+.form-group input,
+.form-group select {
+  padding: 10px 12px;
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: #1e1e2e;
+  transition: border-color 0.2s;
+  background: #fafafa;
+}
+
+/* Highlight the active input */
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #4f46e5;
+  background: #fff;
+}
+
+/* "Add Task" submit button */
+.btn-add {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 4px;
+  transition: opacity 0.2s;
+}
+
+.btn-add:hover {
+  opacity: 0.88;
+}
+
+/* --- TASK LIST --- */
+/* Remove default bullet points from the list */
+#task-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Message shown when the task list is empty */
+.empty-message {
+  text-align: center;
+  color: #9ca3af;
+  font-size: 0.95rem;
+  padding: 20px 0;
+}
+
+/* Each task card */
+.task-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 14px;
+  background: #fafafa;
+  transition: border-color 0.2s;
+}
+
+.task-item:hover {
+  border-color: #c4b5fd;
+}
+
+/* Make the checkbox bigger and easier to tap */
+.task-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-top: 3px;
+  cursor: pointer;
+  accent-color: #4f46e5;
+  flex-shrink: 0;
+}
+
+/* Task details sit in the middle, taking all available space */
+.task-details {
+  flex: 1;
+}
+
+.task-name {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+.task-meta {
+  font-size: 0.82rem;
+  color: #6b7280;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* --- PRIORITY BADGES --- */
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.badge-low    { background: #dcfce7; color: #16a34a; }
+.badge-medium { background: #fef9c3; color: #ca8a04; }
+.badge-high   { background: #fee2e2; color: #dc2626; }
+
+/* --- COMPLETED TASK STYLE --- */
+/* Strike through the name and dim the card when the task is done */
+.task-item.completed .task-name {
+  text-decoration: line-through;
+  color: #9ca3af;
+}
+
+.task-item.completed {
+  opacity: 0.65;
+}
+
+/* --- DELETE BUTTON --- */
+.btn-delete {
+  background: none;
+  border: none;
+  color: #f87171;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 6px;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+
+.btn-delete:hover {
+  background: #fee2e2;
+}
+
+/* --- FOOTER --- */
+footer {
+  text-align: center;
+  padding: 18px;
+  font-size: 0.9rem;
+  color: #6b7280;
+  border-top: 1px solid #e5e7eb;
+  background: #fff;
+}
+
+/* --- RESPONSIVE: MOBILE SCREENS --- */
+/* Adjusts font sizes for smaller screens */
+@media (max-width: 500px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  section {
+    padding: 18px;
+  }
+
+  .task-meta {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
